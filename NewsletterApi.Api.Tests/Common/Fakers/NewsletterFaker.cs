@@ -11,6 +11,6 @@ public sealed class NewsletterFaker : Faker<Newsletter>
 		RuleFor(i => i.Title, i => i.Rant.Random.Word());
 		RuleFor(i => i.Description, i => i.Rant.Random.Words());
 		RuleFor(i => i.Content, i => i.Rant.Review());
-		RuleFor(i => i.CreatedOn, i => i.Date.RecentOffset());
+		RuleFor(i => i.CreatedOn, i => TimeProvider.System.GetUtcNow());
 	}
 }

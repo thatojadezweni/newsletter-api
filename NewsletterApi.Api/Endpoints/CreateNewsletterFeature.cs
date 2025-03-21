@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using NewsletterApi.Api.Common.Abstractions;
 using NewsletterApi.Api.Common.Constants;
@@ -21,6 +22,16 @@ public static class CreateNewsletterFeature
 		[Required]
 		public string Content { get; set; } = string.Empty;
 	}
+
+	public sealed class Validator : AbstractValidator<Request>
+	{
+		public Validator()
+		{
+			RuleFor(i => i.Title).NotEmpty();
+			RuleFor(i => i.Description).NotEmpty();
+			RuleFor(i => i.Content).NotEmpty();
+		}
+	}
 	
 	public sealed class Endpoint : IEndpoint
 	{
@@ -34,14 +45,14 @@ public static class CreateNewsletterFeature
 				dbContext.Newsletters.Add(newsletter);
 				await dbContext.SaveChangesAsync(cancellationToken);
 	
-				return Results.Ok(newsletter.ToDto());
+				return Results.Created($"/api/Newsletters/{newsletter.NewsletterId}", newsletter.ToDto());
 			})
 			.WithName("CreateNewsletter")
 			.WithSummary("Creates a newsletter.")
 			.WithDescription("Creates a newsletter.")
 			.WithTags(Tags.Newsletters)
+			.WithRequestValidation<Request>()
 			.Produces(StatusCodes.Status201Created)
-			.ProducesValidationProblem()
 			.ProducesProblem(StatusCodes.Status404NotFound)
 			.ProducesProblem(StatusCodes.Status500InternalServerError);
 		}

@@ -1,6 +1,5 @@
 using System.Net.Http.Json;
 using NewsletterApi.Api.Models;
-using NewsletterApi.Api.Tests.Common;
 using NewsletterApi.Api.Tests.Common.Abstractions;
 using NewsletterApi.Api.Tests.Common.Extensions;
 using NewsletterApi.Api.Tests.Common.Fakers;
@@ -18,9 +17,7 @@ public sealed class GetNewslettersTests : BaseIntegrationTest
 	[Fact]
 	public async Task GetNewsletters_WhenNewslettersDoesnttExist_ShouldReturnNoNewsletters()
 	{
-		var client = Factory.CreateClient();
-
-		var newsletters = await client.GetFromJsonAsync<IEnumerable<NewsletterDto>>("/api/Newsletters");
+		var newsletters = await Client.GetFromJsonAsync<IEnumerable<NewsletterDto>>("/api/Newsletters");
 		
 		Assert.Empty(newsletters!);
 	}
@@ -32,9 +29,7 @@ public sealed class GetNewslettersTests : BaseIntegrationTest
 		DbContext.Newsletters.AddRange(newsletters);
 		await DbContext.SaveChangesAsync();
 		
-		var client = Factory.CreateClient();
-		
-		var items = await client.GetFromJsonAsync<IEnumerable<NewsletterDto>>("/api/Newsletters");
+		var items = await Client.GetFromJsonAsync<IEnumerable<NewsletterDto>>("/api/Newsletters");
 		
 		newsletters.AssertEqual(items!);
 	}

@@ -5,10 +5,14 @@ namespace NewsletterApi.Api.Tests.Common.Extensions;
 
 public static class NewsletterExtensions
 {
-	public static void AssertEqual(this Newsletter expected, NewsletterDto? actual)
+	public static void AssertEqual(this Newsletter expected, NewsletterDto? actual, bool includeIdentifier = true)
 	{
 		Assert.NotNull(actual);
-		Assert.Equal(expected.NewsletterId, actual.NewsletterId);
+		if (includeIdentifier)
+		{
+			Assert.Equal(expected.NewsletterId, actual.NewsletterId);
+		}
+		
 		Assert.Equal(expected.Title, actual.Title);
 		Assert.Equal(expected.Description, actual.Description);
 		Assert.Equal(expected.Content, actual.Content);
