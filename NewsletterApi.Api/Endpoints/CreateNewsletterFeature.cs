@@ -26,7 +26,7 @@ public static class CreateNewsletterFeature
 	{
 		public void MapEndpoint(IEndpointRouteBuilder app)
 		{
-			app.MapPost("", async ([FromBody] Request model, TimeProvider timeProvider, 
+			app.MapPost("/Newsletters", async ([FromBody] Request model, TimeProvider timeProvider, 
 				ApplicationDbContext dbContext, CancellationToken cancellationToken) =>
 			{
 				var newsletter = Newsletter.Create(model.Title, model.Description, model.Content, timeProvider);

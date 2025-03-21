@@ -11,7 +11,7 @@ public static class DeleteNewsletterFeature
 	{
 		public void MapEndpoint(IEndpointRouteBuilder app)
 		{
-			app.MapDelete("{newsletterId:guid}", async (Guid newsletterId, ApplicationDbContext dbContext, 
+			app.MapDelete("/Newsletters/{newsletterId:guid}", async (Guid newsletterId, ApplicationDbContext dbContext, 
 				CancellationToken cancellationToken) =>
 			{
 				if (!await dbContext.Newsletters.AnyAsync(i => i.NewsletterId == newsletterId, cancellationToken))

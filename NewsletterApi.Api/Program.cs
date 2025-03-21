@@ -17,7 +17,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(i =>
 
 var app = builder.Build();
 
-app.MapEndpoints();
+var routeGroupBuilder = app.MapGroup("/api");
+app.MapEndpoints(routeGroupBuilder);
 
 if (app.Environment.IsDevelopment())
 {
@@ -34,3 +35,5 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.Run();
+
+public partial class Program { }

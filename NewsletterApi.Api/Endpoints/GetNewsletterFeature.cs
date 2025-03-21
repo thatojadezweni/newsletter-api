@@ -13,7 +13,7 @@ public sealed class GetNewsletterFeature
 	{
 		public void MapEndpoint(IEndpointRouteBuilder app)
 		{
-			app.MapGet("{newsletterId:guid}", async (Guid newsletterId, ApplicationDbContext dbContext,
+			app.MapGet("/Newsletters/{newsletterId:guid}", async (Guid newsletterId, ApplicationDbContext dbContext,
 				CancellationToken cancellationToken) =>
 			{
 				var newsletter = await dbContext.Newsletters

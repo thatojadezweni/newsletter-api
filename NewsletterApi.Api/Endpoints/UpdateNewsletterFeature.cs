@@ -25,7 +25,7 @@ public static class UpdateNewsletterFeature
 	{
 		public void MapEndpoint(IEndpointRouteBuilder app)
 		{
-			app.MapPut("{newsletterId:guid}", async (Guid newsletterId, [FromBody] Request model, 
+			app.MapPut("/Newsletters/{newsletterId:guid}", async (Guid newsletterId, [FromBody] Request model, 
 					ApplicationDbContext dbContext, CancellationToken cancellationToken) =>
 				{
 					var newsletter = await dbContext.Newsletters

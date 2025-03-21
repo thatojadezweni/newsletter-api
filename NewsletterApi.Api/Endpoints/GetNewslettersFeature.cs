@@ -12,7 +12,7 @@ public static class GetNewslettersFeature
 	{
 		public void MapEndpoint(IEndpointRouteBuilder app)
 		{
-			app.MapGet("", async (ApplicationDbContext dbContext, CancellationToken cancellationToken) =>
+			app.MapGet("/Newsletters", async (ApplicationDbContext dbContext, CancellationToken cancellationToken) =>
 				{
 					var newsletters = await dbContext.Newsletters
 						.Select(i => new NewsletterDto()
