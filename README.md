@@ -1,2 +1,3 @@
-# newsletter-api
-Demonstrating how to build a simple CI/CD pipeline for Azure App Service.
+# Newsletter API
+
+Demonstrating how to build a simple CI/CD pipeline for integration tests.
