@@ -26,17 +26,14 @@ app.UseExceptionHandler();
 var routeGroupBuilder = app.MapGroup("/api");
 app.MapEndpoints(routeGroupBuilder);
 
-if (app.Environment.IsDevelopment())
+app.MapOpenApi();
+app.MapScalarApiReference(options =>
 {
-	app.MapOpenApi();
-	app.MapScalarApiReference(options =>
-	{
-		options
-			.WithTheme(ScalarTheme.Kepler)
-			.WithDarkModeToggle(true)
-			.WithClientButton(true);
-	});
-}
+	options
+		.WithTheme(ScalarTheme.Kepler)
+		.WithDarkModeToggle(true)
+		.WithClientButton(true);
+});
 
 app.UseHttpsRedirection();
 
