@@ -10,7 +10,7 @@ env:
   AZURE_WEBAPP_NAME: time-service
   AZURE_WEBAPP_PACKAGE_PATH: "./NewsletterApi.Api/publish"
   DOTNET_VERSION: "9.x"
-  SOLUTION_PATH: "NewsletterApi.Api.sln"
+  SOLUTION_PATH: "NewsletterApi.sln"
   API_PROJECT_PATH: "NewsletterApi.Api"
   PUBLISH_DIR: "./publish"
 
